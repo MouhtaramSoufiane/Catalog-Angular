@@ -1,1 +1,55 @@
-<h1 style="text-align: center" class="bg-gradient">products works!</h1>
+
+<div>
+<div class="container mt-3" >
+  <ng-template #errors>
+    <div class="text-bg-danger container col-6 mt-3">
+     {{errorMessage}}
+    </div>
+  </ng-template>
+
+<div class="card" *ngIf="products ;else errors" >
+  <div class="card-header">List of Products</div>
+  <div class="card-body">
+    <form [formGroup]="searchFormGroup" (ngSubmit)="handleGetSearch()">
+      <div class="input-group">
+        <label class="input-group-text">KeyWord :</label>
+        <input type="text" class="form-control" formControlName="keyword">
+        <button class="btn btn-info"><i class="bi bi-search"></i></button>
+      </div>
+    </form>
+
+    <table class="table">
+      <thead>
+      <tr>
+        <th>ID</th><th>Name</th><th>Price</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let p of products">
+        <td>{{p.id}}</td>
+        <td>{{p.name}}</td>
+        <td>{{p.price}}</td>
+        <td><i [ngClass]="p.promotion==false?'text-success':'text-danger'" class="bi bi-heart-fill"></i></td>
+        <td>
+          <button (click)="handleSetPromotion(p)" [ngClass]="p.promotion==true?'btn-success':'btn-danger'" class="btn btn">
+            <span *ngIf="p.promotion==false">Promo Off</span>
+            <span *ngIf="p.promotion==true">Promo On</span>
+          </button>
+        </td>
+        <td>
+          <button (click)="handleDeleteProduct(p)" class="btn btn-danger"><i class="bi bi-trash-fill"></i>Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+  <ul class="nav nav-pills">
+  <li>
+   <a (click)="goToPage(i)" [ngClass]="i==currentPage?'btn-info':'btn-outline-info'" class="btn ms-1 mt-1 mb-1 m-lg-1" *ngFor="let item of [].constructor(totalPages); let i=index" >{{i}}</a>
+  </li>
+  </ul>
+</div>
+</div>
+</div>

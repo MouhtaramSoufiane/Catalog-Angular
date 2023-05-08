@@ -6,17 +6,27 @@ import { AppComponent } from './app.component';
 import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
 import { ProductsComponent } from './Components/products/products.component';
 import { HomeComponent } from './Components/home/home.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import { LoginComponent } from './login/login.component';
+import { CustomersComponent } from './customers/customers.component';
+import { HelpComponent } from './Components/help/help.component';
+import { AdminTemplateComponent } from './admin-template/admin-template.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     ProductsComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent,
+    CustomersComponent,
+    HelpComponent,
+    AdminTemplateComponent
   ],
-  imports: [
+  imports:[
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
